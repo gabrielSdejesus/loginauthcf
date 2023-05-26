@@ -15,11 +15,6 @@
     100% {opacity: 1;}
 }
 
-a {
-    text-decoration: none;
-    color: #030027;
-}
-
 .fadeInLeftBig {
     -webkit-animation-name: fadeInLeftBig;
     animation-name: fadeInLeftBig;
