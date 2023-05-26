@@ -1,0 +1,39 @@
+body, .navbarFix{
+    background-color: rgba(21, 30 , 63);
+}
+
+.sectionUnique {
+    margin-top: 16rem;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    max-width: 350px;
+    min-width: 350px;
+    min-height: 350px;
+}
+
+.buttonGo{
+    background-color: #99A1A6;
+    border: none;
+}
+
+.fadeIn {
+    -webkit-animation-name: fadeIn;
+    animation-name: fadeIn;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+@-webkit-keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+@keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+a {
+    text-decoration: none;
+    color: #030027;
+}
