@@ -1,13 +1,18 @@
 @import "animations.css";
 
+:root{
+    --blue: rgba(21,30,63);
+    --white: rgba(255, 255, 255, 0.7);
+}
+
 body, .navbarFix{
-    background-color: rgba(21, 30 , 63);
+    background-color: var(--blue);
 }
 
 .sectionUnique {
     margin-top: 16rem;
     border-radius: 20px;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: var(--white);
     max-width: 350px;
     min-width: 350px;
     min-height: 350px;
@@ -18,7 +23,7 @@ body, .navbarFix{
     border: none;
 }
 
-#registerForm, .singIn{
+#registerForm, .singIn {
     display: none;
 }
 

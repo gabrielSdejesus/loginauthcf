@@ -8,17 +8,35 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+
     <script src="js/jquery3-7.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
     <link href="css/style.css" rel="stylesheet">
 </head>
 <body class="d-flex flex-column">
-<cfinclude template="view/navbar.cfm">
+<cfinclude template="view/Navbar.cfm">
 <section class="d-flex flex-column p-3 justify-content-center align-self-center sectionUnique fadeIn">
+
+
+    <cfif StructKeyExists(URL, "message")>
+                <cfif URL.message EQ "0">
+                        <p class="d-flex justify-content-center" style="font-size: 20px; color:red;">Failed to create account!</p>
+                </cfif>
+                <cfif URL.message EQ "1">
+                    <p class="d-flex justify-content-center" style='font-size: 20px; color:green;'>Account created!</p>
+                </cfif>
+                <cfif URL.message EQ "2">
+                    <p class="d-flex justify-content-center" style="font-size: 20px; color:red;">Email exists!</p>
+                </cfif>
+                <script>
+                    var newURL = location.href.split("?")[0];
+                    window.history.replaceState({}, document.title, newURL);
+                </script>
+    </cfif>
     <div class="d-flex justify-content-center">
         <img src="img/icon-login-section.png" alt="Logo" width="100" height="100" class="d-inline-block align-text-top">
     </div>
-    <form method="post" action="view/login.cfm" id="loginForm">
+    <form method="post" action="view/LoginAndRegister.cfm" id="loginForm">
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Email Address</label>
                 <input type="email" class="form-control" id="email_adress_login" name="email_adress_login" placeholder="name@example.com">
@@ -36,7 +54,7 @@
                 <button class="btn btn-primary buttonGo" type="submit">Sing in</button>
             </div>
     </form>
-    <form method="post" action="view/register.cfm" id="registerForm" name="registerForm">
+    <form method="post" action="view/LoginAndRegister.cfm" id="registerForm" name="registerForm">
         <div class="mb-3">
             <label class="form-label">Your Name</label>
             <input type="text" class="form-control" id="your_name" name="your_name" placeholder="Example">
@@ -66,7 +84,7 @@
         </div>
         <hr>
         <div class="d-grid gap-2 col-6 mx-auto">
-            <button class="btn btn-primary buttonGo" type="submit">Register</button>
+            <button class="btn btn-primary buttonGo" type="submit" name="operation">Register</button>
         </div>
     </form>
     <div class="d-grid gap-2 col-6 mx-auto">
@@ -77,56 +95,5 @@
     </div>
 </section>
 </body>
-<script>
-    $("#registerForm").validate({
-        errorClass: "error-message",
-        rules: {
-            your_name:{
-                required: true,
-            },
-            email_adress_register:{
-                required: true,
-                email: true,
-            },
-            password:{
-                required: true,
-                minlength: 8,
-                maxlength: 20,
-            },
-            password_confirm:{
-                required: true,
-                equalTo: "#password_register"
-            },
-        }
-    });
-
-    $("#loginForm").validate({
-        errorClass: "error-message",
-        rules: {
-            email_adress_login:{
-                required: true,
-                email: true,
-            },
-            password_login:{
-                required: true,
-                minlength: 8,
-                maxlength: 20,
-            }
-        }
-    });
-
-    $( ".register" ).on( "click", function() {
-        $('#loginForm').fadeOut(200);
-        $(this).hide(1000);
-        $('#registerForm').show(800);
-        $('.singIn').show(800)
-    });
-
-    $( ".singIn" ).on( "click", function() {
-        $('#registerForm').fadeOut(200);
-        $(this).hide(1000);
-        $('#loginForm').show(800);
-        $('.register').show(800)
-    });
-</script>
+<script src="js/authForm.js"></script>
 </html>
