@@ -1,4 +1,5 @@
 <html lang="pt-br">
+<cfapplication name="authApp" sessionManagement="Yes">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -16,27 +17,25 @@
 <body class="d-flex flex-column">
 <cfinclude template="view/Navbar.cfm">
 <section class="d-flex flex-column p-3 justify-content-center align-self-center sectionUnique fadeIn">
-
-
     <cfif StructKeyExists(URL, "message")>
-                <cfif URL.message EQ "0">
-                        <p class="d-flex justify-content-center" style="font-size: 20px; color:red;">Failed to create account!</p>
-                </cfif>
-                <cfif URL.message EQ "1">
-                    <p class="d-flex justify-content-center" style='font-size: 20px; color:green;'>Account created!</p>
-                </cfif>
-                <cfif URL.message EQ "2">
-                    <p class="d-flex justify-content-center" style="font-size: 20px; color:red;">Email exists!</p>
-                </cfif>
-                <script>
-                    var newURL = location.href.split("?")[0];
-                    window.history.replaceState({}, document.title, newURL);
-                </script>
+        <cfif URL.message EQ "0">
+                <p class="d-flex justify-content-center" style="font-size: 20px; color:red;">Failed to create account!</p>
+        </cfif>
+        <cfif URL.message EQ "1">
+                <p class="d-flex justify-content-center" style='font-size: 20px; color:green;'>Account created!</p>
+        </cfif>
+        <cfif URL.message EQ "2">
+                <p class="d-flex justify-content-center" style="font-size: 20px; color:red;">Email exists!</p>
+        </cfif>
+            <script>
+                var newURL = location.href.split("?")[0];
+                window.history.replaceState({}, document.title, newURL);
+            </script>
     </cfif>
     <div class="d-flex justify-content-center">
         <img src="img/icon-login-section.png" alt="Logo" width="100" height="100" class="d-inline-block align-text-top">
     </div>
-    <form method="post" action="view/LoginAndRegister.cfm" id="loginForm">
+    <form method="post" action="view/Login.cfm" id="loginForm">
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Email Address</label>
                 <input type="email" class="form-control" id="email_adress_login" name="email_adress_login" placeholder="name@example.com">
@@ -54,7 +53,7 @@
                 <button class="btn btn-primary buttonGo" type="submit">Sing in</button>
             </div>
     </form>
-    <form method="post" action="view/LoginAndRegister.cfm" id="registerForm" name="registerForm">
+    <form method="post" action="view/Register.cfm" id="registerForm" name="registerForm">
         <div class="mb-3">
             <label class="form-label">Your Name</label>
             <input type="text" class="form-control" id="your_name" name="your_name" placeholder="Example">
