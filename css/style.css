@@ -1,9 +1,5 @@
 @import "animations.css";
-
-:root{
-    --blue: rgba(21,30,63);
-    --white: rgba(255, 255, 255, 0.7);
-}
+@import "variables.css";
 
 body, .navbarFix{
     background-color: var(--blue);

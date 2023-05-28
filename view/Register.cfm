@@ -1,3 +1,13 @@
+<cfinclude template="Auth.cfm">
+
+<cfif #login# EQ true>
+    <cflocation url="../home.cfm" addtoken="false">
+</cfif>
+
+<cfif !structKeyExists(form, "FIELDNAMES")>
+    <cflocation url="../index.cfm" addtoken="false">
+</cfif>
+
 <cftry>
     <cfquery datasource="MYSQL-LOGIN" name="findByEmail">
         SELECT u.EMAIL FROM USER u WHERE u.EMAIL = <cfqueryparam value = #form.EMAIL_ADRESS_REGISTER#>

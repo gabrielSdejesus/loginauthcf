@@ -1,3 +1,9 @@
+<cfinclude template="view/Auth.cfm">
+
+<cfif #login# EQ true>
+    <cflocation url="home.cfm" addtoken="false">
+</cfif>
+
 <html lang="pt-br">
 <cfapplication name="authApp" sessionManagement="Yes">
 <head>
@@ -17,6 +23,7 @@
 <body class="d-flex flex-column">
 <cfinclude template="view/Navbar.cfm">
 <section class="d-flex flex-column p-3 justify-content-center align-self-center sectionUnique fadeIn">
+    <!---<cfdump var = #session.jwtToken#>--->
     <cfif StructKeyExists(URL, "message")>
         <cfif URL.message EQ "0">
                 <p class="d-flex justify-content-center" style="font-size: 20px; color:red;">Failed to create account!</p>
@@ -26,6 +33,12 @@
         </cfif>
         <cfif URL.message EQ "2">
                 <p class="d-flex justify-content-center" style="font-size: 20px; color:red;">Email exists!</p>
+        </cfif>
+        <cfif URL.message EQ "3">
+                <p class="d-flex justify-content-center" style="font-size: 20px; color:red;">Email or Password invalid!</p>
+        </cfif>
+        <cfif URL.message EQ "4">
+                <p class="d-flex justify-content-center" style="font-size: 20px; color:red;">Failed to login!</p>
         </cfif>
             <script>
                 var newURL = location.href.split("?")[0];
